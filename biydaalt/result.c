@@ -3,10 +3,10 @@
 #include <pthread.h>
 #include <unistd.h> // sleep() функцийн төлөө
 
-#define SIZE 10
+#define SIZE 11
 #define MAX_THREADS 3
 
-int arr[SIZE] = {10, 3, 15, 7, 8, 23, 74, 18, 2, 5};
+int arr[SIZE] = {10, 3, 100, 7, 8, 23, 74, 18, 2, 5, 1};
 int sorted_arr[SIZE];
 
 void *sort_half(void *arg);
@@ -181,6 +181,7 @@ void *merge(void *arg)
 
     while (i < mid && j < SIZE)
     {
+        printf("Merging %d %d.\n", arr[i], arr[j]);
         if (arr[i] < arr[j])
         {
             sorted_arr[k++] = arr[i++];
@@ -193,11 +194,13 @@ void *merge(void *arg)
 
     while (i < mid)
     {
+        printf("Adding left elements from first half %d.\n", arr[i]);
         sorted_arr[k++] = arr[i++];
     }
 
     while (j < SIZE)
     {
+        printf("Adding left elements from second half %d.\n", arr[j]);
         sorted_arr[k++] = arr[j++];
     }
 

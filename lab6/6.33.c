@@ -6,9 +6,6 @@
 int available_resources = MAX_RESOURCES;
 pthread_mutex_t resource_mutex;
 
-/* decrease available resources by count resources */
-/* return 0 if sufficient resources available, */
-/* otherwise return -1 */
 int decrease_count(int count)
 {
     pthread_mutex_lock(&resource_mutex);
@@ -26,7 +23,6 @@ int decrease_count(int count)
     }
 }
 
-/* increase available resources by count */
 int increase_count(int count)
 {
     pthread_mutex_lock(&resource_mutex);
